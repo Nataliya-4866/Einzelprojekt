@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/game-results")
-class GameResultController(
-    private val gameResultService: GameResultService
-) {
+
+class GameResultController(private val gameResultService: GameResultService) {
 
     @GetMapping("/{gameResultId}")
     fun getGameResult(@PathVariable gameResultId: Long): GameResult? {
@@ -29,5 +28,5 @@ class GameResultController(
     fun deleteGameResult(@PathVariable gameResultId: Long) {
         gameResultService.deleteGameResult(gameResultId)
     }
-    
+
 }
