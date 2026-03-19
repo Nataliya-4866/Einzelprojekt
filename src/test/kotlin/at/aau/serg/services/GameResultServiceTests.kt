@@ -71,5 +71,26 @@ class GameResultServiceTests {
         assertEquals(gameResult2, res[1])
         assertEquals(2, res[1].id)
     }
+    //vorhandenes Objekt soll  korrekt aus der Liste entfernt werden
+    @Test
+    fun test_deleteGameResult_existingId_removesObject() {
+        val gameResult = GameResult(1, "player1", 17, 15.3)
+        service.addGameResult(gameResult)
 
+        service.deleteGameResult(1)
+
+        val res = service.getGameResults()
+        assertEquals(0, res.size)
+    }
+    //
+    @Test
+    fun test_deleteGameResult_nonexistentId_doesNothing() {
+        val gameResult = GameResult(1, "player1", 17, 15.3)
+        service.addGameResult(gameResult)
+
+        service.deleteGameResult(99)
+
+        val res = service.getGameResults()
+        assertEquals(1, res.size)
+    }
 }
