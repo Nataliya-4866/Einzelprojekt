@@ -21,7 +21,7 @@ class LeaderboardController(private val gameResultService: GameResultService) {
 
     // (höher ist besser) absteigend sortiert
     @GetMapping
-    fun getLeaderboard(@RequestParam(required = false) rank: Int?): List<GameResult> {
+    fun getLeaderboard(@RequestParam(required = false) rank: Int?=null): List<GameResult> {
 
         val leaderboard = gameResultService.getGameResults()
             .sortedWith(
